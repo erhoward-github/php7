@@ -11,12 +11,12 @@ class Upload
 
     public function __construct()
     {
-
+        # constructor
     }
 
     public function __destruct()
     {
-
+        # destructor
     }
 
     public function get_output()
