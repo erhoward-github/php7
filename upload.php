@@ -51,7 +51,24 @@ class Upload
             }
             if($error_count === 0)
             {
-                $this->output = '<a href="#nogo">Uploaded file. . .</a>';
+                try
+                {
+                    move_uploaded_file($this->temp, $this->name);
+                    $this->messages[] = '<a href="' . $this->name . '">Uploaded file. . .</a>';
+                }
+                catch(Exception $e)
+                {
+                    $this->messages[] =  $e->getMessage();
+                }
+                finally
+                {
+                    $this->output = '<ul>';
+                    foreach($this->messages as $message)
+                    {
+                        $this->output .= "<li>$message</li>";
+                    }
+                    $this->output .= '</ul>';
+                }
             }
             else
             {
